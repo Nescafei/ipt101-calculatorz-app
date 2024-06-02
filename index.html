@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Logic With JavaScript</title>
+    <style>
+
+        .animated-bg {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            width: 75%;
+            height: 75%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .animated-bg .bg {
+            position: absolute;
+            top: 60;
+            left: 29;
+            width: 75%;
+            height: 75%;
+            background: linear-gradient(45deg, rgba(253, 173, 120, 0.8), rgba(136, 72, 179, 0.3));
+            z-index: -1;
+            animation: animateBg 30s linear infinite;
+        }
+
+        @keyframes animateBg {
+            0% {
+                transform: translateX(-50%) translateY(-50%) rotate(0deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-50%) rotate(360deg);
+            }
+        }
+
+        .animatedz-bg {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 75%;
+            height: 75%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .animatedz-bg .bg {
+            position: absolute;
+            top: 5;
+            left: 29;
+            width: 40%;
+            height: 40%;
+            background: linear-gradient(45deg, rgba(218, 147, 100, 0.8), rgba(161, 95, 206, 0.3));
+            z-index: -1;
+            animation: animatezBg 20s linear infinite;
+        }
+
+        
+        @keyframes animatezBg {
+            0% {
+                transform: translateX(-50%) translateY(-50%) rotate(0deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-50%) rotate(360deg);
+            }
+        }
+
+        .animatedzz-bg {
+            position: absolute;
+            top: 70;
+            left: 60%;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .animatedzz-bg .bg {
+            position: absolute;
+            top: 60%;
+            left: 60%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(218, 147, 100, 0.8), rgba(137, 81, 175, 0.3));
+            z-index: -1;
+            animation: animateBgzz 35s linear infinite;
+        }
+
+        @keyframes animateBgzz {
+            100% {
+                transform: translateX(-50%) translateY(-50%) rotate(0deg);
+            }
+            0% {
+                transform: translateX(-50%) translateY(-50%) rotate(360deg);
+            }
+        }
+
+
+        body {
+            background-color: rgb(228, 151, 115);
+        }
+
+        h1 {
+            font-size: 60px;
+        }
+
+        .calculator {
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffad77;
+            border: 4px solid rgb(160, 102, 68);
+            border-radius: 20px;
+            width: 80%;
+            max-width: 400px;
+        }
+   
+        #result {
+            width: 152.8%;
+            height: 50px;
+            padding: 10px;
+            color: rgb(78, 44, 8);
+            height: 50px;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: rgb(78, 44, 8);
+            border-radius: 15px;
+            border: 3px solid rgb(204, 133, 86);
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+        .num-btn {
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            color: rgb(122, 63, 32);
+        }
+
+        .num-btn {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 20px;
+            margin: 5px;
+            border: skyblue;
+            border-radius: 15px;
+            border-color: black;
+            background-color: rgb(255, 203, 155);
+            font-size: 16px;
+            cursor: pointer;
+            transform: scale(1.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 50px;
+            height: 65px;
+            transition: transform 0.3s ease-in-out
+        }
+
+        .solo-btn {
+            padding: 20px;
+            border-radius: 15px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transform: scale(1.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 70px;
+            transition: transform 0.3s ease-in-out
+        }
+
+        .solo-btn:hover {
+            transform: scale(0.9);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+        .num-btn:hover {
+            transform: scale(0.9);
+            background-color: rgb(199, 68, 63);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        
+
+        .result-input {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: rgb(78, 44, 8);
+            border-radius: 15px;
+            border: 3px solid rgb(139, 86, 43);
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .calculator {
+                width: 90%;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="bg"></div>
+    </div>
+
+    <div class="animatedz-bg">
+        <div class="bg"></div>
+    </div>
+
+    <div class="animatedzz-bg">
+        <div class="bg"></div>
+    </div>
+
+    <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; padding-left:745px; margin-top: 65px;">Calculator App</h1>
+
+    <div class="calculator">
+        <table>
+        <tr>
+            <td colspan="3"><input type="text" id="result" disabled style="border-radius: 15px;">
+    </tr>
+            <tr>
+            <td colspan="1"><input type="button" value="1" onclick="appendNumber(1)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="2" onclick="appendNumber(2)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="3" onclick="appendNumber(3)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="+" onclick="add()" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="/" onclick="divide()" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            </tr>
+
+            <tr>
+            <td colspan="1"><input type="button" value="4" onclick="appendNumber(4)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="5" onclick="appendNumber(5)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="6" onclick="appendNumber(6)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="-" onclick="subtract()" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="X" onclick="multliply()" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            </tr>
+
+            <tr>
+            <td colspan="1"><input type="button" value="7" onclick="appendNumber(7)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="8" onclick="appendNumber(8)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="9" onclick="appendNumber(9)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="=" onclick="calculate()" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="." onclick="appendNumber('.')" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+
+            </tr>
+
+            <tr>
+            <td colspan="1"><input type="button" value="0" onclick="appendNumber(0)" class="num-btn" style="background-color: rgb(255, 203, 155);"></td>
+            <td colspan="1"><input type="button" value="c" onclick="clearInput()" class="num-btn" style="background-color: rgb(255, 136, 136);"></td>
+            <td colspan="1"><input type="button" value="⌫" onclick="delclearInput()" class="num-btn" style="background-color: rgb(255, 136, 136);"></td>
+            <td colspan="1"><input type="button" value="Miss Mo?" onclick="appendNumber('Hindi ka nya miss :<')" class="solo-btn" style="background-color: rgb(168, 140, 140);"></td>
+
+            </tr>
+    </table>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+
+        function add() {
+            currentOperator = "+";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function subtract() {
+            currentOperator = "-";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function multliply() {
+            currentOperator = "*";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = "/";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function calculate() {
+            const result = eval(currentInput);
+            document.getElementById('result').value = result;
+            currentInput = result.toString();
+            currentOperator = '';
+        }
+
+        function clearInput() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+        }
+
+        function delclearInput(){
+        currentInput = currentInput.slice(0, -1);
+        document.getElementById('result').value = currentInput;
+    }
+    </script>
+
+</body>
+</html>
